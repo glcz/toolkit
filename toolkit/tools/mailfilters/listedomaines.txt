@@ -1,0 +1,32 @@
+(AND -from:bouygues-telecom.fr AND
+-from:freetelecom.fr AND
+-from:sosh.fr AND
+-from:creditmutuel.fr AND 
+-from:caisse-epargne.fr AND
+-from:github.com AND
+-from:caf.fr AND
+-from:ameli.fr AND
+-from:-from:harmonie-mutuelle.fr AND
+-from:henner.frmonespacesante.fr AND
+-from:doctolib.fr AND
+-from:axa.fr AND
+-from:boardgamearena.com AND
+-from:steampowered.com AND
+-from:epicgames.com AND
+-from:gog.com AND
+-from:rockstargames.com AND
+-from:addviseo.com AND
+-from:helpline.fr AND
+-from:pole-emploi.fr AND
+-from:linkedin.com AND
+-from:edenred.com AND
+-from:1life.fr AND
+-from:myprimobox.net AND
+-from:github.com AND
+-from:rugbysaintherblain.fr AND
+-from:ffr.fr AND
+-from:sporteasy.net AND
+-from:laplumedescomperesgmail.com AND
+-from:roll20.net AND
+-from:leboncoin.fr AND
+-from:edf.fr)
