@@ -4,42 +4,63 @@ import random
 from pathlib import Path
 
 # Charger le fichier txt contenant les entrées
-namedict = Path(__file__).parent / "dict.txt"
+parts_file_txt = Path(__file__).parent / "dict.txt"
 
 # Dict des possibilités
-larousse = {}
-with open(namedict) as entries:
-    for cle, line in enumerate(entries, start=1):
-        larousse[cle] = line.rstrip()
+parts_dict = {}
+with open(parts_file_txt) as entries:
+    clean_entries = [line.strip() for line in entries if line.strip()]
+    for cle, line in enumerate(clean_entries, start=1):
+        parts_dict[cle] = line
 
 # Variables
-amplitude = len(larousse) ** 2
-message = f"Généré depuis {amplitude} possibilités"
+dict_range = len(parts_dict) ** 2
+info_how_many = f"Généré depuis {dict_range} possibilités"
 
 # Fonctions
 
-def tirage():
-    part = larousse[random.randint(1, len(larousse))].capitalize()
+def clean_file():
+    parts_file_txt.write_text("\n".join(parts_dict.values()))
+
+def get_dict_part():
+    part = parts_dict[random.randint(1, len(parts_dict))].capitalize()
     return part
 
+def add_dict(new_word_input):
+    # On réécrit le fichier entièrement à partir de parts_dict (déjà nettoyé en mémoire)
+    # plutôt que de manipuler le texte brut du fichier : ça évite toute dépendance
+    # à l'état exact du fichier sur disque (ligne finale en trop ou en moins,
+    # espaces parasites, etc.), peu importe comment il a été édité entre-temps.
+    new_word = new_word_input.lower()
+    if new_word in parts_dict.values():
+        click.echo(click.style("'" + new_word + "'" + " existe déjà et n'a pas été ajouté", fg="red"))
+    else:
+        parts_dict.update({len(parts_dict)+1: new_word})
+        parts_file_txt.write_text("\n".join(parts_dict.values()))
+        click.echo(click.style("'" + new_word + "'" + " ajouté !", fg="green"))
+
 @click.command(epilog="Exemple : toolkit namegen -cn 8 -s _")
-@click.option('-n', default=3, help=": Nombre de propositions à générer (par défaut 3)")
+@click.option('-n', type=click.IntRange(1), default=3, help=": Nombre de propositions à générer (par défaut 3)")
 @click.option('-s', default="", help=": Séparateur (par défaut aucun)")
 @click.option('-c', is_flag=True, help=": Ajouter un nombre à la fin")
-def start(n, s, c):
+@click.option('-a', type=click.STRING, help=": Ajouter un mot au dictionnaire")
+def start(n, s, c, a):
     """Génère des noms aléatoires."""
+    clean_file()
     resultats = []
     for _ in range(n):
         if not c:
-            username = tirage() + s + tirage()
+            username = get_dict_part() + s + get_dict_part()
         else:
-            username = tirage() + s + tirage() + s + str(random.randint(111, 999))
+            username = get_dict_part() + s + get_dict_part() + s + str(random.randint(111, 999))
         resultats.append(username)
     print(" / ".join(resultats))
-    if amplitude >= n:
-        click.echo(click.style(message, fg="yellow"))
+    if a:
+        add_dict(a)
+    if dict_range >= n:
+        click.echo(click.style(info_how_many, fg="yellow"))
     else:
-        click.echo(click.style(message + " (attention aux doublons)", fg="red"))
+        click.echo(click.style(info_how_many + " (attention aux doublons)", fg="red"))
 
 # Programme
 
