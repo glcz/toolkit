@@ -5,3 +5,12 @@ L'objectif est de pouvoir alimenter deux fichiers :
 - un fichier de "préfixes", par exemple : "mini", "packet", ...
 - un fichier de "suffixes", par exemple : "motor", "loss", ...
 Le programme piochera dans ces deux fichiers pour proposer des combinaisons, par exemple : miniloss, packetmotor, packetloss, ...
+
+# Todo
+
+- [ ] Pouvoir ajouter une entrée au dictionnaire
+- [ ] Pouvoir supprimer une entrée au dictionnaire
+- [ ] Et si y a une ligne vide, ou un doublon de mot ?
+- [ ] Une vraie vérif de génération d'un doublon ?
+- [ ] Gérer si l'utilisateur entre un entier négatif
+- [ ] Comment mettre un nb de noms si on lance direct le main.py ?
