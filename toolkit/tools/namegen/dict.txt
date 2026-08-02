@@ -38,3 +38,5 @@ point
 points
 contra
 fever
+goth
+rasputin
