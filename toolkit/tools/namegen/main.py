@@ -39,12 +39,24 @@ def add_dict(new_word_input):
         parts_file_txt.write_text("\n".join(parts_dict.values()))
         click.echo(click.style("'" + new_word + "'" + " ajouté !", fg="green"))
 
+def del_dict(del_word_input):
+    del_word = del_word_input.lower()
+    if del_word in parts_dict.values():
+        del_key = [key for key, value in parts_dict.items() if value == del_word]
+        for key in del_key: # On utilise une boucle au cas où il y aurait quand même un doublon dans le dictionnaire
+            parts_dict.pop(key)
+        parts_file_txt.write_text("\n".join(parts_dict.values()))
+        click.echo(click.style("'" + del_word + "'" + " supprimé !", fg="green"))
+    else:
+        click.echo(click.style("'" + del_word + "'" + " n'existe pas", fg="red"))
+
 @click.command(epilog="Exemple : toolkit namegen -cn 8 -s _")
 @click.option('-n', type=click.IntRange(1), default=3, help=": Nombre de propositions à générer (par défaut 3)")
 @click.option('-s', default="", help=": Séparateur (par défaut aucun)")
 @click.option('-c', is_flag=True, help=": Ajouter un nombre à la fin")
 @click.option('-a', type=click.STRING, help=": Ajouter un mot au dictionnaire")
-def start(n, s, c, a):
+@click.option('-d', type=click.STRING, help=": Supprimer un mot du dictionnaire")
+def start(n, s, c, a, d):
     """Génère des noms aléatoires."""
     clean_file()
     resultats = []
@@ -57,6 +69,8 @@ def start(n, s, c, a):
     print(" / ".join(resultats))
     if a:
         add_dict(a)
+    if d:
+        del_dict(d)
     if dict_range >= n:
         click.echo(click.style(info_how_many, fg="yellow"))
     else:

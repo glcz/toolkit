@@ -39,5 +39,4 @@ points
 contra
 fever
 goth
-choom
 rasputin
