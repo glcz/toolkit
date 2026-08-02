@@ -43,8 +43,8 @@ Le nombre de combinaisons possibles affiché après chaque génération (`amplit
 
 ## Todo
 
-- [ ] Pouvoir ajouter une entrée au dictionnaire depuis la commande
-- [ ] Pouvoir supprimer une entrée au dictionnaire depuis la commande
-- [ ] Gérer les lignes vides ou les doublons de mots dans `dict.txt`
+- [x] Pouvoir ajouter une entrée au dictionnaire depuis la commande
+- [x] Pouvoir supprimer une entrée au dictionnaire depuis la commande
+- [x] Gérer les lignes vides ou les doublons de mots dans `dict.txt`
 - [ ] Une vraie estimation du risque de doublon (type paradoxe des anniversaires) plutôt que la comparaison actuelle
-- [ ] Empêcher `-n` négatif ou non numérique
+- [x] Empêcher `-n` négatif ou non numérique

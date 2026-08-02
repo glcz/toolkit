@@ -9,6 +9,7 @@ L'idée : plutôt que d'avoir dix scripts éparpillés qu'il faut retrouver et l
 | Outil | Description |
 |---|---|
 | [`namegen`](toolkit/tools/namegen/README.md) | Génère des noms d'utilisateur aléatoires en combinant des mots issus d'un dictionnaire éditable |
+| [`qrwizard`](toolkit/tools/qrwizard/README.md) | Génère un QR code à partir d'un texte, avec affichage terminal et export PNG |
 
 D'autres outils sont en cours de refonte et rejoindront la liste au fur et à mesure.
 
